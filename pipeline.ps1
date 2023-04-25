@@ -16,3 +16,8 @@ Get-Process | Tee-Object -FilePath $home\Test.txt
 Get-Process | Export-Csv -Path $home\processList.csv
 $processes = Import-Csv -Path $home\processList.csv
 $processes | Format-Table Name, Path
+
+Get-Process | Where-Object {$_.CPU -gt 10}
+Get-Process | Where-Object {$PSItem.CPU -gt 10}
+
+Get-Process | Where-Object {$_.CPU -gt 5 -and $_.CPU -lt 10} | Format-List
